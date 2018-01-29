@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>hcov</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				width: 100%;
+				height: 100%;
+			}
+			
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+			
+			p {
+				line-height: 1;
+			}
+			
+			.dashboard {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+				padding-top: 3%;
+				background-image: url(img/bg.jpg);
+				background-size: 100% 100%;
+			}
+			
+			.flex-container {
+				position: relative;
+				height: 90%;
+				width: 90%;
+				/*overflow: hidden;*/
+				margin: 0 auto 0 auto;
+				box-sizing: content-box;
+			}
+			
+			.pane {
+				padding: 0px;
+				margin: 0px;
+				width: 75%;
+				height: 100%;
+				position: absolute;
+				transform: scale(0.33);
+				transition: all 0.8s;
+				background-color: rgba(32, 32, 35, 0.5);
+			}
+			
+			.active {
+				/*height:100%;*/
+				/*width: 100%;*/
+				/*margin-left: 5px;*/
+				/*line-height: 300px;*/
+			}
+			
+			.chart {
+				position: relative;
+				width: 95%;
+				height: 95%;
+				margin-top: 3%;
+			}
+			
+			.code_part {
+				position: absolute;
+				background-color: #f1f1f1;
+				width: 100%;
+				height: 100%;
+				overflow-x: hidden;
+				overflow-y: auto;
+				border-radius: 5px;
+				word-wrap: break-word;
+			}
+			
+			.code_part::-webkit-scrollbar {
+				/*滚动条整体样式*/
+				width: 10px;
+				height: 4px;
+			}
+			
+			.code_part::-webkit-scrollbar-thumb {
+				/*滚动条里面小方块*/
+				border-radius: 5px;
+				-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+				background: rgba(0, 0, 0, 0.2);
+			}
+			
+			.code_part::-webkit-scrollbar-track {
+				/*滚动条里面轨道*/
+				-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+				border-radius: 0;
+				background: rgba(0, 0, 0, 0.1);
+			}
+			
+			.code_display {
+				display: inline-block;
+				width: 78%;
+				height: 100%;
+				padding: 10px 1% 3px 2%;
+				font-size: 13px;
+			}
+			
+			.func_display {
+				display: inline-block;
+				position: fixed;
+				top: 0;
+				right: 0;
+				box-shadow: 0px 0px 6px darkgrey;
+				padding: 18px 1% 50px 0.5%;
+				border-radius: 5px;
+				width: 18%;
+				height: auto;
+				font-size: 10px;
+				line-height: 2;
+			}
+			
+			.find_Func {
+				display: block;
+			}
+			
+			#highlight {
+				background: yellow;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="dashboard">
+			<div class="flex-container">
+				<div class="pane one" onclick="clickChart('1')" style="transform: translate(-35%,-33.5%) scale(0.33)">
+					<div class="chart" id="pie_graph"></div>
+					<!-- 覆盖路径和未覆盖路径所占比例-->
+				</div>
+				<div class="pane two" onclick="clickChart('2')" style="transform: translate(-35%,0.5%) scale(0.33)">
+					<div class="chart" id="column_chart"></div>
+					<!--覆盖与未覆盖的行，分支，函数统计-->
+				</div>
+				<div class="pane three" onclick="clickChart('3')" style="transform: translate(-35%,34.5%) scale(0.33)">
+					
+				</div>
+				<div class="pane four active" onclick="clickChart('4')" style="transform: translate(35.5%, 0) scale(1)">
+					<div class="code_part">
+						<div class="code_display" id="code_board">
+							<!--代码展示-->
+
+							<p>File: /home/wanghan/binutils-2.25/libiberty/lbasename.c</p>
+							<p>File: /home/wanghan/binutils-2.25/binutils/unwind-ia64.c</p>
+							<p>File: /home/wanghan/binutils-2.25/libiberty/xmalloc.c</p>
+							<p>File: /home/wanghan/binutils-2.25/include/elf/ia64.h</p>
+							<p>File: /home/wanghan/binutils-2.25/include/elf/iq2000.h</p>
+							<p>File: /home/wanghan/binutils-2.25/binutils/dwarf.c</p>
+							<p>File: /home/wanghan/binutils-2.25/binutils/elfcomm.c</p>
+							<p>File: /home/wanghan/binutils-2.25/libiberty/xexit.c</p>
+							<p>File: /home/wanghan/binutils-2.25/include/dwarf2.def</p>
+							<p>File: /home/wanghan/binutils-2.25/binutils/readelf.c</p>
+							<p>File: /home/wanghan/binutils-2.25/include/elf/ppc64.h</p>
+							<p>File: /home/wanghan/binutils-2.25/binutils/version.c</p>
+							<p>File: /home/wanghan/binutils-2.25/libiberty/argv.c</p>
+							<p>File: /home/wanghan/binutils-2.25/libiberty/xstrdup.c</p>
+							<p>File: /home/wanghan/binutils-2.25/include/elf/xstormy16.h</p>
+							<p>File: /home/wanghan/binutils-2.25/libiberty/1lbasename.c</p>
+							<p>File: /home/wanghan/binutils-2.25/binutils/1unwind-ia64.c</p>
+							<p>File: /home/wanghan/binutils-2.25/libiberty/1xmalloc.c</p>
+							<p>File: /home/wanghan/binutils-2.25/include/1elf/ia64.h</p>
+							<p>File: /home/wanghan/binutils-2.25/include/1elf/iq2000.h</p>
+							<p>File: /home/wanghan/binutils-2.25/binutils/1dwarf.c</p>
+							<p>File: /home/wanghan/binutils-2.25/binutils/1elfcomm.c</p>
+							<p>File: /home/wanghan/binutils-2.25/libiberty/1xexit.c</p>
+							<p>File: /home/wanghan/binutils-2.25/include/1dwarf2.def</p>
+							<p>File: /home/wanghan/binutils-2.25/binutils/1readelf.c</p>
+							<p>File: /home/wanghan/binutils-2.25/include/1elf/ppc64.h</p>
+							<p>File: /home/wanghan/binutils-2.25/binutils/v1ersion.c</p>
+							<p>File: /home/wanghan/binutils-2.25/libiberty/a1rgv.c</p>
+							<p>File: /home/wanghan/binutils-2.25/libiberty/1xstrdup.c</p>
+							<p>File: /home/wanghan/binutils-2.25/include/elf/x1stormy16.h</p>
+
+						</div>
+						<div class="func_display">
+							<a class="find_Func" href="javascript:void(0);">binutils/readelf.c</a>
+							<a class="find_Func" href="javascript:void(0);">binutils/1elfcomm.c</a>
+							<a class="find_Func" href="javascript:void(0);">libiberty/1xexit.c</a>
+							<a class="find_Func" href="javascript:void(0);">libiberty/a1rgv.c</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+	</body>
+	<script src="js/echarts.common.min.js"></script>
+	<script type="text/javascript">
+		//		环状图
+		var myChartOne = echarts.init(document.getElementById('pie_graph'));
+		option = {
+			tooltip: {
+				trigger: 'item',
+				formatter: "{a} <br/>{b}: {c} ({d}%)"
+			},
+			legend: {
+				orient: 'vertical',
+				x: 'right',
+				data: ['已执行路径', '未执行路径'],
+				selectedMode: false,
+				textStyle: {
+					color: 'white',
+				}
+			},
+			series: [{
+				name: '已执行路径',
+				type: 'pie',
+				radius: ['50%', '70%'],
+				avoidLabelOverlap: false,
+				label: {
+					normal: {
+						show: false,
+						position: 'center'
+					},
+					emphasis: {
+						show: true,
+						textStyle: {
+							fontSize: '30',
+							fontWeight: 'bold'
+						}
+					}
+				},
+				labelLine: {
+					normal: {
+						show: false
+					}
+				},
+				data: [{
+					value: 335,
+					name: '已执行路径'
+				}, {
+					value: 310,
+					name: '未执行路径'
+				}]
+			}]
+		};
+		myChartOne.setOption(option);
+
+		//		柱状图
+		var myChartTwo = echarts.init(document.getElementById('column_chart'));
+		option = {
+			tooltip: {
+				trigger: 'axis',
+				//				formatter: "{b}<br/>{a0}: {c0}<br/>{a1}: {c1}",
+				axisPointer: { // 坐标轴指示器，坐标轴触发有效
+					type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+					lable: {
+						formatter: function(params) {
+							// 假设此轴的 type 为 'time'
+							return 'some text' + echarts.format.formatTime(params.seriesData);
+						}
+					}
+				}
+			},
+			legend: {
+				orient: 'vertical',
+				x: 'right',
+				data: ['覆盖', '未覆盖'],
+				selectedMode: false,
+				textStyle: {
+					color: 'white',
+				}
+			},
+			grid: {
+				containLabel: true,
+				textStyle: {
+					color: 'white',
+				}
+			},
+			textStyle: {
+				color: 'white',
+			},
+			xAxis: [{
+				type: 'category',
+				data: ['Line', 'Branches', 'Function'],
+				axisLine: {
+					lineStyle: {
+						color: 'gray',
+					}
+				}
+			}],
+			yAxis: [{
+				type: 'value',
+				axisLine: {
+					show: false,
+				},
+				splitLine: {
+					lineStyle: {
+						color: 'gray'
+					}
+				}
+			}],
+			series: [{
+				name: '覆盖',
+				type: 'bar',
+				barWidth: 20,
+				stack: '搜索引擎',
+				data: [6200, 7320, 7010]
+			}, {
+				name: '未覆盖',
+				type: 'bar',
+				stack: '搜索引擎',
+				data: [3200, 5320, 2010]
+			}]
+		};
+		myChartTwo.setOption(option);
+		window.addEventListener('resize', function() {
+			myChartOne.resize();
+			myChartTwo.resize();
+		});
+
+		var n = null;
+		self_high = false;
+		var aLi = document.querySelectorAll('.find_Func');
+		for(var i = 0; i < aLi.length; i++) {
+			aLi[i].addEventListener('click', function() {
+
+				//		清空上次高亮显示的内容
+				clearSelection();
+
+				if(n !== this.innerText) {
+					n = this.innerText;
+					highlight();
+				} else {
+					n = null;
+				}
+			});
+		}
+
+		function highlight() {
+
+			//		创建正则表达式，g表示全局
+			var regExp = new RegExp(n, 'g');
+
+			//		高亮选中的函数
+			var codeboard = document.getElementById('code_board');
+			var newboard = codeboard.innerHTML.replace(regExp, '<span id="highlight">' + n + '</span>');
+			codeboard.innerHTML = newboard;
+
+			//				---- Plan B ----
+			//			var bLi = document.querySelectorAll("p");
+			//			for(var i = 0; i < bLi.length; i++) {
+			//				var html = String(bLi[i].innerHTML);
+			//				var newHtml = html.replace(regExp, '<span class="highlight">' + n + '</span>');
+			//				bLi[i].InnerHTML = newHtml;
+			//				alert(html);
+			//			}
+
+			var _highlight = document.getElementById("highlight");
+			_highlight.scrollIntoView(true);
+		}
+
+		//		清空高亮显示
+		function clearSelection() {
+			if(n !== null) {
+				document.getElementById('highlight').outerHTML = n;
+			}
+			//      	var _highlight = document.querySelectorAll('.highlight');
+			//      	for (i=0; i<_highlight.length; i++) {
+			//      		if(n!==null){
+			//      			_highlight[i].outerHTML=n;
+			//      			alert(n);
+			//      		}
+			//			}
+		}
+
+		//		切换效果
+		function clickChart(clickIndex) {
+			var activePane = document.querySelector('.flex-container .active');
+			var activeIndex = activePane.dataset.order;
+			var allPane = document.getElementsByClassName('pane');
+			var clickPane = allPane[clickIndex - 1]
+			if(activeIndex === clickIndex) {
+				return;
+			} else {
+				activePane.classList.remove('active');
+				clickPane.classList.add('active');
+				this._setStyle(clickPane, activePane);
+			}
+		}
+
+		function _setStyle(el1, el2) {
+			var transform1 = el1.style.transform
+			var transform2 = el2.style.transform
+			el1.style.transform = transform2
+			el2.style.transform = transform1
+		}
+	</script>
+
+</html>

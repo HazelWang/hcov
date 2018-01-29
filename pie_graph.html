@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+
+		<body>
+			<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+			<div id="pie_graph" style="width: 600px;height:400px;"></div>
+		</body>
+
+	</body>
+
+	<!-- 引入 ECharts 文件 -->
+	<script src="js/echarts.common.min.js"></script>
+	<script type="text/javascript">
+		//		app.title = '环形图';
+		var myChartOne = echarts.init(document.getElementById('pie_graph'));
+		option = {
+			tooltip: {
+				trigger: 'item',
+				formatter: "{a} <br/>{b}: {c} ({d}%)"
+			},
+			legend: {
+				x: 'left',
+				data: ['已执行路径', '未执行路径'],
+				selectedMode:false,
+				textStyle:{
+					color: 'white',
+				}
+			},
+			series: [{
+				name: '已执行路径',
+				type: 'pie',
+				radius: ['50%', '70%'],
+				avoidLabelOverlap: false,
+				label: {
+					normal: {
+						show: false,
+						position: 'center'
+					},
+					emphasis: {
+						show: true,
+						textStyle: {
+							fontSize: '30',
+							fontWeight: 'bold'
+						}
+					}
+				},
+				labelLine: {
+					normal: {
+						show: false
+					}
+				},
+				data: [{
+					value: 335,
+					name: '已执行路径'
+				}, {
+					value: 310,
+					name: '未执行路径'
+				}]
+			}]
+		};
+		myChartOne.setOption(option);
+	</script>
+
+</html>

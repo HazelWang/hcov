@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				width: 100%;
+				height: 100%;
+			}
+			
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+			p {
+				line-height:1;
+			}
+			.code_part {
+				position: absolute;
+				background-color: #f1f1f1;
+				width: 100%;
+				height: 100%;
+				overflow-x: hidden;
+				overflow-y: auto;
+				border-radius: 5px;
+				word-wrap:break-word;
+			}
+			
+			.code_part::-webkit-scrollbar {
+				/*滚动条整体样式*/
+				width: 10px;
+				height: 4px;
+			}
+			
+			.code_part::-webkit-scrollbar-thumb {
+				/*滚动条里面小方块*/
+				border-radius: 5px;
+				-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+				background: rgba(0, 0, 0, 0.2);
+			}
+			
+			.code_part::-webkit-scrollbar-track {
+				/*滚动条里面轨道*/
+				-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+				border-radius: 0;
+				background: rgba(0, 0, 0, 0.1);
+			}
+			
+			.code_display {
+				display: inline-block;
+				width: 80%;
+				height: 100%;
+				padding: 10px 1% 3px 2%;
+				font-size: 13px;
+			}
+			
+			.func_display {
+				display: inline-block;
+				position: fixed;
+				top: 0;
+				right: 0;
+				box-shadow: 0px 0px 6px darkgrey;
+				padding: 18px 1% 50px 0.5%;
+				border-radius: 5px;
+				width: 16%;
+				height: auto;
+				font-size: 13px;
+				line-height: 2;
+				
+			}
+			
+			.find_Func {
+				display: block;
+			}
+			
+			#highlight {
+				background: yellow;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="code_part">
+			<div class="code_display" id="code_board">
+				<!--代码展示-->
+
+				<p>File: /home/wanghan/binutils-2.25/libiberty/lbasename.c</p>
+				<p>File: /home/wanghan/binutils-2.25/binutils/unwind-ia64.c</p>
+				<p>File: /home/wanghan/binutils-2.25/libiberty/xmalloc.c</p>
+				<p>File: /home/wanghan/binutils-2.25/include/elf/ia64.h</p>
+				<p>File: /home/wanghan/binutils-2.25/include/elf/iq2000.h</p>
+				<p>File: /home/wanghan/binutils-2.25/binutils/dwarf.c</p>
+				<p>File: /home/wanghan/binutils-2.25/binutils/elfcomm.c</p>
+				<p>File: /home/wanghan/binutils-2.25/libiberty/xexit.c</p>
+				<p>File: /home/wanghan/binutils-2.25/include/dwarf2.def</p>
+				<p>File: /home/wanghan/binutils-2.25/binutils/readelf.c</p>
+				<p>File: /home/wanghan/binutils-2.25/include/elf/ppc64.h</p>
+				<p>File: /home/wanghan/binutils-2.25/binutils/version.c</p>
+				<p>File: /home/wanghan/binutils-2.25/libiberty/argv.c</p>
+				<p>File: /home/wanghan/binutils-2.25/libiberty/xstrdup.c</p>
+				<p>File: /home/wanghan/binutils-2.25/include/elf/xstormy16.h</p>
+				<p>File: /home/wanghan/binutils-2.25/libiberty/1lbasename.c</p>
+				<p>File: /home/wanghan/binutils-2.25/binutils/1unwind-ia64.c</p>
+				<p>File: /home/wanghan/binutils-2.25/libiberty/1xmalloc.c</p>
+				<p>File: /home/wanghan/binutils-2.25/include/1elf/ia64.h</p>
+				<p>File: /home/wanghan/binutils-2.25/include/1elf/iq2000.h</p>
+				<p>File: /home/wanghan/binutils-2.25/binutils/1dwarf.c</p>
+				<p>File: /home/wanghan/binutils-2.25/binutils/1elfcomm.c</p>
+				<p>File: /home/wanghan/binutils-2.25/libiberty/1xexit.c</p>
+				<p>File: /home/wanghan/binutils-2.25/include/1dwarf2.def</p>
+				<p>File: /home/wanghan/binutils-2.25/binutils/1readelf.c</p>
+				<p>File: /home/wanghan/binutils-2.25/include/1elf/ppc64.h</p>
+				<p>File: /home/wanghan/binutils-2.25/binutils/v1ersion.c</p>
+				<p>File: /home/wanghan/binutils-2.25/libiberty/a1rgv.c</p>
+				<p>File: /home/wanghan/binutils-2.25/libiberty/1xstrdup.c</p>
+				<p>File: /home/wanghan/binutils-2.25/include/elf/x1stormy16.h</p>
+
+			</div>
+			<div class="func_display">
+				<a class="find_Func" href="javascript:void(0);">binutils/readelf.c</a>
+				<a class="find_Func" href="javascript:void(0);">binutils/1elfcomm.c</a>
+				<a class="find_Func" href="javascript:void(0);">libiberty/1xexit.c</a>
+				<a class="find_Func" href="javascript:void(0);">libiberty/a1rgv.c</a>
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		var n = null;
+		self_high = false;
+		var aLi = document.querySelectorAll('.find_Func');
+		for(var i = 0; i < aLi.length; i++) {
+			aLi[i].addEventListener('click', function() {
+				
+				//		清空上次高亮显示的内容
+				clearSelection();
+				
+				if(n!==this.innerText){
+					n = this.innerText;
+					highlight();
+				}else{
+					n=null;
+				}
+			});
+		}
+
+		function highlight() {
+			
+			//		创建正则表达式，g表示全局
+			var regExp = new RegExp(n, 'g');
+			
+			//		高亮选中的函数
+			var codeboard = document.getElementById('code_board');
+			var newboard = codeboard.innerHTML.replace(regExp, '<span id="highlight">' + n + '</span>');
+			codeboard.innerHTML = newboard;
+			
+//				---- Plan B ----
+//			var bLi = document.querySelectorAll("p");
+//			for(var i = 0; i < bLi.length; i++) {
+//				var html = String(bLi[i].innerHTML);
+//				var newHtml = html.replace(regExp, '<span class="highlight">' + n + '</span>');
+//				bLi[i].InnerHTML = newHtml;
+//				alert(html);
+//			}
+			
+			var _highlight = document.getElementById("highlight");
+			_highlight.scrollIntoView(true);
+		}
+		
+		//		清空高亮显示
+		function clearSelection(){
+			if(n!==null){
+				document.getElementById('highlight').outerHTML=n;
+			}
+//      	var _highlight = document.querySelectorAll('.highlight');
+//      	for (i=0; i<_highlight.length; i++) {
+//      		if(n!==null){
+//      			_highlight[i].outerHTML=n;
+//      			alert(n);
+//      		}
+//			}
+		} 
+//			var flag = 0;
+//			var bStart = true;
+//			$('#tip').text(''); 
+//			$('#tip').hide(); 
+//			var searchText = this.InnerHTML;
+//
+//			var _searchTop = $('#searchstr').offset().top + 30;
+//			var _searchLeft = $('#searchstr').offset().left;
+//			if($.trim(searchText) == "") {
+//				showTips("请输入查找车站名", _searchTop, 3, _searchLeft);
+//				return;
+//			}
+//			//查找匹配 
+//			var searchText = $('#searchstr').val(); //获取你输入的关键字； 
+//			var regExp = new RegExp(searchText, 'g'); //创建正则表达式，g表示全局的，如果不用g，则查找到第一个就不会继续向下查找了； 
+//			var content = $("#content").text();
+//			if(!regExp.test(content)) {
+//				showTips("没有找到要查找的车站", _searchTop, 3, _searchLeft);
+//				return;
+//			} else {
+//				if(sCurText != searchText) {
+//					i = 0;
+//					sCurText = searchText;
+//				}
+//			}
+//			//高亮显示 
+//			$('p').each(function() {
+//				var html = $(this).html();
+//				//将找到的关键字替换，加上highlight属性； 
+//				var newHtml = html.replace(regExp, '<span class="highlight">' + searchText + '</span>');
+//				$(this).html(newHtml); //更新； 
+//				flag = 1;
+//			});
+//
+//			//定位并提示信息 
+//			if(flag == 1) {
+//				if($(".highlight").size() > 1) {
+//					var _top = $(".highlight").eq(i).offset().top + $(".highlight").eq(i).height();
+//					var _tip = $(".highlight").eq(i).parent().find("strong").text();
+//					if(_tip == "") _tip = $(".highlight").eq(i).parent().parent().find("strong").text();
+//					var _left = $(".highlight").eq(i).offset().left;
+//					var _tipWidth = $("#tip").width();
+//					if(_left > $(document).width() - _tipWidth) {
+//						_left = _left - _tipWidth;
+//					}
+//					$("#tip").html(_tip).show();
+//					$("#tip").offset({
+//						top: _top,
+//						left: _left
+//					});
+//					$("#search_btn").val("查找下一个");
+//				} else {
+//					var _top = $(".highlight").offset().top + $(".highlight").height();
+//					var _tip = $(".highlight").parent().find("strong").text();
+//					var _left = $(".highlight").offset().left;
+//					$('#tip').show();
+//					$("#tip").html(_tip).offset({
+//						top: _top,
+//						left: _left
+//					});
+//				}
+//				$("html, body").animate({
+//					scrollTop: _top - 50
+//				});
+//				i++;
+//				if(i > $(".highlight").size() - 1) {
+//					i = 0;
+//				}
+//			}
+			
+	</script>
+
+</html>

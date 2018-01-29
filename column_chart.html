@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+
+		<body>
+			<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+			<div id="column_chart" style="width: 600px;height:400px;"></div>
+		</body>
+
+	</body>
+
+	<!-- 引入 ECharts 文件 -->
+	<script src="js/echarts.common.min.js"></script>
+	<script type="text/javascript">
+		//		柱状图
+		var myChartTwo = echarts.init(document.getElementById('column_chart'));
+		option = {
+			tooltip: {
+				trigger: 'axis',
+				formatter: "{b}<br/>{a0}: {c0}<br/>{a1}: {c1}",
+				alwaysShowContent:true,
+				axisPointer: { // 坐标轴指示器，坐标轴触发有效
+					type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+					lable:{
+						formatter:function (params) {
+    					// 假设此轴的 type 为 'time'
+    						return 'some text' + echarts.format.formatTime(params.seriesData);
+						}
+					} 
+				}
+			},
+			legend: {
+				x: 'right',
+				data: ['覆盖', '未覆盖'],
+				textStyle:{
+//					color: 'white',
+				}
+			},
+			grid: {
+				left: '10%',
+				right: '4%',
+				bottom: '1%',
+				containLabel: true,
+				borderColor:'gray'
+//				textStyle:{
+//					color: 'white',
+//				}
+			},
+			textStyle:{
+//				color: 'white',
+			},
+			xAxis: [{
+				type: 'category',
+				data: ['Line', 'Branches', 'Function'],
+				axisLine:{  
+                    lineStyle:{  
+                    color:'gray',  
+                    }  
+                }  
+			}],
+			yAxis: [{
+				type: 'value',
+				axisLine:{  
+                	show:false, 
+               },
+				splitLine:{
+					lineStyle:{
+						color: 'gray'
+					}
+				}
+			}],
+			series: [{
+				name: '覆盖',
+				type: 'bar',
+				barWidth: 20,
+				stack: '搜索引擎',
+				data: [6200, 7320, 7010]
+			}, {
+				name: '未覆盖',
+				type: 'bar',
+				stack: '搜索引擎',
+				data: [3200, 5320, 2010]
+			}]
+		};
+		myChartTwo.setOption(option);
+	</script>
+
+</html>
